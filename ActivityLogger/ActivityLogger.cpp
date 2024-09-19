@@ -167,7 +167,9 @@ string ActivityLogger::FindActivityLogFile()
 		throw runtime_error("File Error: No CSV files exist that match the format 'LastnameFirstnameLog.csv' in the folder.");
 	}
 
-	if (filteredCsvFileNames.size() != 1)
+	const int ONLY_ONE_CSV_FILE_ALLOWED = 1;
+
+	if (filteredCsvFileNames.size() != ONLY_ONE_CSV_FILE_ALLOWED)
 	{
 		string errContent;
 		for(const string& fileName : csvFileNames)
@@ -220,8 +222,7 @@ void ActivityLogger::ParseLogData(string logFileName)
 		rowCounter++;
 	}
 
-
-	if (rowCounter < REQUIRED_AMOUNT_OF_ROWS)
+	if (rowCounter <= REQUIRED_AMOUNT_OF_ROWS)
 	{
 		throw runtime_error("Incorrect Csv File Format Error: " + logFileName + " CSV file is required to have at least two rows. The first row for first and last name (lastName in the first cell and firstName in the second cell)" +
 			" and the second row for the Class ID (in the first cell).");
@@ -315,7 +316,7 @@ vector<string> ActivityLogger::FilterFilesForActivityLogFormat(vector<string> fi
 
 	regex csvFileActivityLogPattern(R"(^[A-Z][a-zA-Z]*[A-Z][a-zA-Z]*Log$)");
 
-	for (const auto& fileName : fileNames) {
+	for (const string& fileName : fileNames) {
 		if (regex_match(fileName, csvFileActivityLogPattern))
 		{
 			results.push_back(fileName + ".csv");
@@ -326,6 +327,7 @@ vector<string> ActivityLogger::FilterFilesForActivityLogFormat(vector<string> fi
 }
 //Action: get all the csv files in the folder 
 //Return: a vector list of all the csv files in the folder 
+//Adapted From: https://www.geeksforgeeks.org/cpp-program-to-get-the-list-of-files-in-a-directory/
 vector<string> ActivityLogger::FetchAllCsvFileNamesInFolder()
 {
 
@@ -348,17 +350,20 @@ vector<string> ActivityLogger::FetchAllCsvFileNamesInFolder()
 }
 //Action: getter for LogOwnerFirstName
 //Return: user's first name
-string ActivityLogger::GetFirstNameOfLogOwner() {
+string ActivityLogger::GetFirstNameOfLogOwner() 
+{
 	return LogOwnerFirstName;
 }
 //Action: getter for LogOwnerLastName
 //Return: user's last name
-string ActivityLogger::GetLastNameOfLogOwner() {
+string ActivityLogger::GetLastNameOfLogOwner() 
+{
 	return LogOwnerLastName;
 }
 //Action: getter for ClassID
 //Return: class id associated with activity log
-string ActivityLogger::GetClassID() {
+string ActivityLogger::GetClassID() 
+{
 	return ClassID;
 }
 //Action: getter for ClassID

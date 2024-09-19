@@ -56,8 +56,6 @@ int main()
     
     WriteAppIntro();
 
-    cin.ignore();
-
     ActivityLoggerConsole consoleApp;
 
     consoleApp.WriteLogFileHeader();
@@ -88,12 +86,14 @@ void WriteAppIntro()
 {
   cout << "\n\n\n\n";
   cout << "\nWelcome To Activity Logger!\n" << endl;
-  cout << "\nOtherwise Known As Program B!\n" << endl;
+  cout << "\n(Otherwise Known As Program B!)\n" << endl;
   cout << "\nAuthor: Connor Gilmore\n" << endl;
   cout << "\nGroup: Team 11\n" << endl;
-  cout << "\nDetails: Creates A New Activity Log Entry While the User Does the Activity\n" << endl;
+  cout << "\nDetails: Creates a new activity log entry while the user does the activity\n" << endl;
   cout << "\n\Summary: Inputs from the user's keyboard and a user's csv file following the format 'LastnameFirstnameLog.csv'; outputs to the console and to the user's csv file. Designed to track and log time time a user spends doing a class Activity, This program uses your computers system clock to track time spent on an activity and automatically generates a new log to the csv file when the user is done working on their activity!\n" << endl;
   cout << "\n\n\n\n";
   cout << "Please Press Enter To Continue...\n" << endl;
+
+  cin.ignore();
 }
 

@@ -9,7 +9,7 @@ void ActivityLoggerConsole::TimeEventHandler()
   logger.ActivityEntry.SetTimeStart(sTime);
   logger.ActivityEntry.SetDateStart(logger.AccessCurrentDate());
 
-  cin.ignore();
+  ContinueTimingHandler();
 
   string eTime = logger.AccessCurrentTime();
   WriteEndTime(eTime);
@@ -52,7 +52,7 @@ void ActivityLoggerConsole::NoteEntryHandler()
 
     if (consoleReadResult != successfulRead) {
       cout << consoleReadResult << endl;
-      cout << "Please Enter A New Note: " << endl;
+      cout << "Please Enter A Note: " << endl;
     }
 
 
